@@ -95,7 +95,7 @@ namespace api_desafio21dias.Controllers
             {
                 _context.Add(administrador);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                // return RedirectToAction(nameof(Index));
             }
             return StatusCode(201, administrador);
         }
@@ -124,7 +124,7 @@ namespace api_desafio21dias.Controllers
                         throw;
                     }
                 }
-                return StatusCode(200, administrador);
+                // return StatusCode(200, administrador);
             }
             return StatusCode(200, administrador);
         }
