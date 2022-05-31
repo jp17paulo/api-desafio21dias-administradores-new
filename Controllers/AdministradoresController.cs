@@ -82,7 +82,8 @@ namespace api_desafio21dias.Controllers
             return StatusCode(200, new {
                 Id = administrador.Id,
                 Nome = administrador.Nome,
-                Email = administrador.Email
+                Email = administrador.Email,
+                Senha = administrador.Senha
             });
         }
 
