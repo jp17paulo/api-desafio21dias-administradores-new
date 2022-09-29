@@ -9,6 +9,7 @@ using api_desafio21dias.Models;
 using api_desafio21dias.Servicos;
 using EntityFrameworkPaginateCore;
 using api_desafio21dias.ModelViews;
+using Microsoft.AspNetCore.Authorization;
 
 namespace api_desafio21dias.Controllers
 {
@@ -25,6 +26,7 @@ namespace api_desafio21dias.Controllers
         // GET: /administradores
         [HttpGet]
         [Route("/administradores")]
+        [Authorize(Roles = "administrador, editor")]
         public async Task<IActionResult> Index(int page = 1)
         {
             return StatusCode(200, await _context.Administradores.OrderBy(a => a.Id).Select(a => new {
@@ -38,6 +40,7 @@ namespace api_desafio21dias.Controllers
         // GET: /administradores/login
         [HttpPost]
         [Route("/administradores/login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] AdmLoginView admin)
         {
             if (string.IsNullOrEmpty(admin.Email) || string.IsNullOrEmpty(admin.Senha))
@@ -90,6 +93,7 @@ namespace api_desafio21dias.Controllers
         // POST: /administradores
         [HttpPost]
         [Route("/administradores")]
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> Create(Administrador administrador)
         {
             if (ModelState.IsValid)
@@ -104,6 +108,7 @@ namespace api_desafio21dias.Controllers
         // PUT: /administradores/5
         [HttpPut]
         [Route("/administradores/{id}")]
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> Edit(int id, Administrador administrador)
         {
             if (ModelState.IsValid)
@@ -133,6 +138,7 @@ namespace api_desafio21dias.Controllers
         // DELETE: /administradores/5
         [HttpDelete]
         [Route("/administradores/{id}")]
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var administrador = await _context.Administradores.FindAsync(id);
