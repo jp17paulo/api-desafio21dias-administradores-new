@@ -10,6 +10,7 @@ using api_desafio21dias.Servicos;
 using EntityFrameworkPaginateCore;
 using api_desafio21dias.ModelViews;
 using Microsoft.AspNetCore.Authorization;
+using api_desafio21dias.Servico;
 
 namespace api_desafio21dias.Controllers
 {
@@ -56,7 +57,8 @@ namespace api_desafio21dias.Controllers
                     return StatusCode(200, new {
                     Id = administrador.Id,
                     Nome = administrador.Nome,
-                    Email = administrador.Email
+                    Email = administrador.Email,
+                    Token = Token.GerarToken(administrador)
                 });
             }
 

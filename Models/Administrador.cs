@@ -33,8 +33,8 @@ namespace api_desafio21dias.Models
     [NotMapped]
     public string Permissao => "administrador";
 
-    [NotMapped]
-    public string Token { get; set; }
+    // [NotMapped]
+    // public string Token { get; set; }
 
     #endregion
 
